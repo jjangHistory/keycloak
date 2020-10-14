@@ -108,32 +108,28 @@ public class UrlBean {
     }
 
     public String getHomeUrl() {
-        String baseUrl = baseURI != null ? baseURI.toString():"";
-        String actionUrl = actionuri != null ? actionuri.toString():"";
-        int index = -1;
-        if (baseUrl != null){
-            index = baseUrl.indexOf("//");
+        String baseUrl = baseURI != null ? baseURI.toString() : "";
+        String actionUrl = actionuri != null ? actionuri.toString() : "";
+        String domainSuffix = "instsign.com";
+        String localhostDomain = "localhost";
+        String homeUrl = "";
+        if (actionUrl.contains(domainSuffix) || actionUrl.contains(localhostDomain)){
+            homeUrl = actionUrl;
+        } else if (baseUrl.contains(domainSuffix) || baseUrl.contains(localhostDomain)){
+            homeUrl = baseUrl;
         }
-        if (index < 0 && actionUrl != null){
-            index = actionUrl.indexOf("//");
+        if (!homeUrl.isEmpty()){
+            if (homeUrl.contains("authtest." + domainSuffix)){
+                return "https://test." + domainSuffix;
+            } else if (homeUrl.contains("authdemo." + domainSuffix)){
+                return "https://demo." + domainSuffix;
+            } else  if (homeUrl.contains("auth." + domainSuffix)){
+                return "https://app." + domainSuffix;
+            } else   if (homeUrl.contains("localhost")) {
+                return "http://localhost:8080";
+            }
         }
-        String domainSuffix = ".instsign.com";
-        String protocol = baseUrl.substring(0, index + 2);
-        if ((baseUrl != null && baseUrl.contains("authtest" + domainSuffix)) ||
-            (actionUrl != null && actionUrl.contains("authtest" + domainSuffix))){
-            return protocol + "test"+ domainSuffix;
-        } else if ((baseUrl != null && baseUrl.contains("authdemo" + domainSuffix)) ||
-            (actionUrl != null && actionUrl.contains("authdemo" + domainSuffix))){
-            return protocol + "demo"+ domainSuffix;
-        } else if ((baseUrl != null && baseUrl.contains("auth" + domainSuffix)) ||
-            (actionUrl != null && actionUrl.contains("auth" + domainSuffix))){
-            return protocol + "app"+ domainSuffix;
-        } else if ((baseUrl != null && baseUrl.contains("localhost")) ||
-            (actionUrl != null && actionUrl.contains("localhost"))){
-            return protocol + "localhost:8080";
-        } else {
-            return baseUrl;
-        }
+        return baseUrl;
     }
 
 }
