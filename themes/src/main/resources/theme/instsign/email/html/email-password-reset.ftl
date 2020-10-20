@@ -250,7 +250,7 @@
     <div class="email-header">
       <a href="${homeUrl}" class="email-header-logo" target="_blank">
         <img class="logo logo-margin"
-             src="https://instsign-resource.s3.ap-northeast-2.amazonaws.com/email/images/instsign-logo-107-x-15@2x.png" />
+             src="https://instsign-resource.s3.ap-northeast-2.amazonaws.com/email/images/instsign-logo-107-x-15%402x.png" />
       </a>
       <a href="${documentUrl}" target="_blank1">
         <div class="email-header-link-button">
