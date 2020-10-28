@@ -404,7 +404,8 @@ public class LoginActionsService {
     public Response directRegister(@QueryParam(Constants.REFERRAL_CODE) String referralCode) {
         event.event(EventType.REGISTER);
         String clientId = "account";
-        AuthenticationSessionModel authSession = createAuthenticationSessionForClient(clientId);
+        ClientModel client = realm.getClientByClientId(clientId);
+        AuthenticationSessionModel authSession = createAuthenticationSessionForClient(client, true);
         if (referralCode != null) {
             authSession.setClientNote(CURRENT_REFERRED_BY_CODE, referralCode);
         }
@@ -424,41 +425,24 @@ public class LoginActionsService {
 ////        AuthenticationFlow authenticationFlow = processor.createFlowExecution(realm.getRegistrationFlow().getId(), null);
 //        Response response2 = processFlow(true, authSession.getAuthNote(CURRENT_AUTHENTICATION_EXECUTION), authSession, REGISTRATION_PATH, flowModel, null, processor);
 //        return response2;
-        ClientModel client = realm.getClientByClientId(clientId);
         session.getContext().setClient(client);
         Response response = processRegistration(false, null, authSession, null);
         return response;
     }
 
-    AuthenticationSessionModel createAuthenticationSessionForClient(String clientId)
-        throws UriBuilderException, IllegalArgumentException {
-        AuthenticationSessionModel authSession;
-
-        // set up the account service as the endpoint to call.
-        ClientModel client = realm.getClientByClientId(clientId);
-
-        RootAuthenticationSessionModel rootAuthSession = new AuthenticationSessionManager(session).createAuthenticationSession(realm, true);
-        authSession = rootAuthSession.createAuthenticationSession(client);
-
-        authSession.setAction(AuthenticationSessionModel.Action.AUTHENTICATE.name());
-        //authSession.setNote(AuthenticationManager.END_AFTER_REQUIRED_ACTIONS, "true");
-        authSession.setProtocol(OIDCLoginProtocol.LOGIN_PROTOCOL);
-        String redirectUri = Urls.accountBase(session.getContext().getUri().getBaseUri()).path("/").build(realm.getName()).toString();
-        authSession.setRedirectUri(redirectUri);
-        authSession.setClientNote(OIDCLoginProtocol.RESPONSE_TYPE_PARAM, OAuth2Constants.CODE);
-        authSession.setClientNote(OIDCLoginProtocol.REDIRECT_URI_PARAM, redirectUri);
-        authSession.setClientNote(OIDCLoginProtocol.ISSUER, Urls.realmIssuer(session.getContext().getUri().getBaseUri(), realm.getName()));
-
-        return authSession;
-    }
-
     AuthenticationSessionModel createAuthenticationSessionForClient()
         throws UriBuilderException, IllegalArgumentException {
-        AuthenticationSessionModel authSession;
 
         // set up the account service as the endpoint to call.
         ClientModel client = SystemClientUtil.getSystemClient(realm);
 
+       return createAuthenticationSessionForClient(client, true);
+    }
+
+    AuthenticationSessionModel createAuthenticationSessionForClient(ClientModel client, boolean changeRedirectUrl)
+        throws UriBuilderException, IllegalArgumentException {
+        AuthenticationSessionModel authSession;
+
         RootAuthenticationSessionModel rootAuthSession = new AuthenticationSessionManager(session).createAuthenticationSession(realm, true);
         authSession = rootAuthSession.createAuthenticationSession(client);
 
@@ -466,6 +450,12 @@ public class LoginActionsService {
         //authSession.setNote(AuthenticationManager.END_AFTER_REQUIRED_ACTIONS, "true");
         authSession.setProtocol(OIDCLoginProtocol.LOGIN_PROTOCOL);
         String redirectUri = Urls.accountBase(session.getContext().getUri().getBaseUri()).path("/").build(realm.getName()).toString();
+        if (changeRedirectUrl){
+//            String baseUrl = session.getContext().getUri().getBaseUri().toString();
+//            String requestUrl = session.getContext().getUri().getRequestUri().toString();
+            String instsignHomeUrl = Urls.getInstsignHomeUrl(session.getContext().getUri().getBaseUri(), session.getContext().getUri().getRequestUri());
+            redirectUri = instsignHomeUrl;
+        }
         authSession.setRedirectUri(redirectUri);
         authSession.setClientNote(OIDCLoginProtocol.RESPONSE_TYPE_PARAM, OAuth2Constants.CODE);
         authSession.setClientNote(OIDCLoginProtocol.REDIRECT_URI_PARAM, redirectUri);

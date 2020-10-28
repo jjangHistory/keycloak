@@ -278,4 +278,29 @@ public class Urls {
     private static UriBuilder themeBase(URI baseUri) {
         return UriBuilder.fromUri(baseUri).path(ThemeResource.class);
     }
+
+  public static String getInstsignHomeUrl(URI baseURI, URI actionuri) {
+    String baseUrl = baseURI != null ? baseURI.toString() : "";
+    String actionUrl = actionuri != null ? actionuri.toString() : "";
+    String domainSuffix = "instsign.com";
+    String localhostDomain = "localhost";
+    String homeUrl = "";
+    if (actionUrl.contains(domainSuffix) || actionUrl.contains(localhostDomain)) {
+      homeUrl = actionUrl;
+    } else if (baseUrl.contains(domainSuffix) || baseUrl.contains(localhostDomain)) {
+      homeUrl = baseUrl;
+    }
+    if (!homeUrl.isEmpty()) {
+      if (homeUrl.contains("authtest." + domainSuffix)) {
+        return "https://test." + domainSuffix;
+      } else if (homeUrl.contains("authdemo." + domainSuffix)) {
+        return "https://demo." + domainSuffix;
+      } else if (homeUrl.contains("auth." + domainSuffix)) {
+        return "https://app." + domainSuffix;
+      } else if (homeUrl.contains("localhost")) {
+        return "http://localhost:8080";
+      }
+    }
+    return baseUrl;
+  }
 }
