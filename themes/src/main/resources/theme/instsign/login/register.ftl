@@ -17,11 +17,6 @@
           ${msg("register-content-title")}
       </div>
       <br/>
-        <#--      <input id="user.attributes.mobilePhoneNumber" name="user.attributes.mobilePhoneNumber" type="hidden" />-->
-        <#--      <input id="user.attributes.company" name="user.attributes.company" type="hidden" />-->
-        <#--      <input id="user.attributes.serviceAgreement" name="user.attributes.serviceAgreement" type="hidden" />-->
-        <#--      <input id="user.attributes.privacyAgreement" name="user.attributes.privacyAgreement" type="hidden" />-->
-        <#--      <input id="user.attributes.marketingAgreement" name="user.attributes.marketingAgreement" type="hidden" />-->
       <div class="instsign-content-input-group margin-top-30">
         <div class="instsign-content-input-label">
           <span>${msg("register-content-email")}</span>
@@ -219,9 +214,8 @@
               </#list>
               <#list social.providers as p>
                   <#if p.alias == "naver">
-                  <#--                      <div class="instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">-->
-                    <div class="instsign-login-social-link-${p.alias}"
-                         onclick="displayAlert('${msg("alert-preparing")}')">
+                      <div class="instsign-login-social-link-${p.alias}"
+                           onclick="goToUrl('${p.loginUrl}')">
                       <div class="instsign-login-social-link-${p.alias}-svg">
                       </div>
                       <div class="instsign-login-social-link-text">
