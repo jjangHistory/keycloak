@@ -239,7 +239,9 @@ public class AccountFormService extends AbstractSecuredLocalService {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response accountPage() {
-        return forwardToPage(null, AccountPages.ACCOUNT);
+//        return forwardToPage(null, AccountPages.ACCOUNT);
+        String redirectUrl = Urls.getInstsignHomeUrl(session.getContext().getUri().getBaseUri(), session.getContext().getUri().getRequestUri());
+        return Response.status(302).location(URI.create(redirectUrl)).build();
     }
 
     public static UriBuilder totpUrl(UriBuilder base) {

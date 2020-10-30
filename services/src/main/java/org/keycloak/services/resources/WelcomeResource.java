@@ -89,14 +89,16 @@ public class WelcomeResource {
     @GET
     @Produces(MediaType.TEXT_HTML_UTF_8)
     public Response getWelcomePage() throws URISyntaxException {
-        checkBootstrap();
-
-        String requestUri = session.getContext().getUri().getRequestUri().toString();
-        if (!requestUri.endsWith("/")) {
-            return Response.seeOther(new URI(requestUri + "/")).build();
-        } else {
-            return createWelcomePage(null, null);
-        }
+//        checkBootstrap();
+//
+//        String requestUri = session.getContext().getUri().getRequestUri().toString();
+//        if (!requestUri.endsWith("/")) {
+//            return Response.seeOther(new URI(requestUri + "/")).build();
+//        } else {
+//            return createWelcomePage(null, null);
+//        }
+        String redirectUrl = Urls.getInstsignHomeUrl(session.getContext().getUri().getBaseUri(), session.getContext().getUri().getRequestUri());
+        return Response.status(302).location(URI.create(redirectUrl)).build();
     }
 
     @POST
