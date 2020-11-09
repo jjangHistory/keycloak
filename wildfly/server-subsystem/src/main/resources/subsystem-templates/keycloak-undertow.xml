@@ -30,16 +30,11 @@
             <?AJP?>
             <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>
             <https-listener name="https" socket-binding="https" security-realm="ApplicationRealm" enable-http2="true"/>
-            <https-listener name="https-admin" socket-binding="https-admin" security-realm="ApplicationRealm" enable-http2="true"/>
             <host name="default-host" alias="localhost">
                 <location name="/" handler="welcome-content"/>
                 <http-invoker security-realm="ApplicationRealm"/>
-                <filter-ref name="portAccess"/>
             </host>
         </server>
-        <filters>
-            <expression-filter name="portAccess" expression="path-prefix('/auth/admin') and not equals(%p, 9872) -> response-code(403)"/>
-        </filters>
         <servlet-container name="default">
             <jsp-config/>
             <websockets/>
@@ -55,7 +50,6 @@
     </supplement>
     <socket-binding name="http" port="${jboss.http.port:8080}"/>
     <socket-binding name="https" port="${jboss.https.port:8443}"/>
-    <socket-binding name="https-admin" port="9872"/>
     <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
 </config>
 
