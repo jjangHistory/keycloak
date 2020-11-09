@@ -89,14 +89,16 @@ public class WelcomeResource {
     @GET
     @Produces(MediaType.TEXT_HTML_UTF_8)
     public Response getWelcomePage() throws URISyntaxException {
-        checkBootstrap();
-
-        String requestUri = session.getContext().getUri().getRequestUri().toString();
-        if (!requestUri.endsWith("/")) {
-            return Response.seeOther(new URI(requestUri + "/")).build();
-        } else {
-            return createWelcomePage(null, null);
-        }
+//        checkBootstrap();
+//
+//        String requestUri = session.getContext().getUri().getRequestUri().toString();
+//        if (!requestUri.endsWith("/")) {
+//            return Response.seeOther(new URI(requestUri + "/")).build();
+//        } else {
+//            return createWelcomePage(null, null);
+//        }
+        String redirectUrl = Urls.getInstsignHomeUrl(session.getContext().getUri().getBaseUri(), session.getContext().getUri().getRequestUri());
+        return Response.status(302).location(URI.create(redirectUrl)).build();
     }
 
     @POST
@@ -177,20 +179,20 @@ public class WelcomeResource {
 
     private Response createWelcomePage(String successMessage, String errorMessage) {
         try {
-          Theme theme = getTheme();
+            Theme theme = getTheme();
 
-          Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
 
-          map.put("productName", Version.NAME);
-          map.put("productNameFull", Version.NAME_FULL);
+            map.put("productName", Version.NAME);
+            map.put("productNameFull", Version.NAME_FULL);
 
-          map.put("properties", theme.getProperties());
+            map.put("properties", theme.getProperties());
 
-          URI uri = Urls.themeRoot(session.getContext().getUri().getBaseUri());
-          String resourcesPath = uri.getPath() + "/" + theme.getType().toString().toLowerCase() +"/" + theme.getName();
-          map.put("resourcesPath", resourcesPath);
+            URI uri = Urls.themeRoot(session.getContext().getUri().getBaseUri());
+            String resourcesPath = uri.getPath() + "/" + theme.getType().toString().toLowerCase() +"/" + theme.getName();
+            map.put("resourcesPath", resourcesPath);
 
-           map.put("bootstrap", bootstrap);
+            map.put("bootstrap", bootstrap);
             if (bootstrap) {
                 boolean isLocal = isLocal();
                 map.put("localUser", isLocal);
@@ -210,8 +212,8 @@ public class WelcomeResource {
             String result = freeMarkerUtil.processTemplate(map, "index.ftl", theme);
 
             ResponseBuilder rb = Response.status(errorMessage == null ? Status.OK : Status.BAD_REQUEST)
-                    .entity(result)
-                    .cacheControl(CacheControlUtil.noCache());
+                .entity(result)
+                .cacheControl(CacheControlUtil.noCache());
             BrowserSecurityHeaderSetup.headers(rb, BrowserSecurityHeaders.defaultHeaders);
             return rb.build();
         } catch (Exception e) {

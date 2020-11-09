@@ -239,7 +239,9 @@ public class AccountFormService extends AbstractSecuredLocalService {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response accountPage() {
-        return forwardToPage(null, AccountPages.ACCOUNT);
+//        return forwardToPage(null, AccountPages.ACCOUNT);
+        String redirectUrl = Urls.getInstsignHomeUrl(session.getContext().getUri().getBaseUri(), session.getContext().getUri().getRequestUri());
+        return Response.status(302).location(URI.create(redirectUrl)).build();
     }
 
     public static UriBuilder totpUrl(UriBuilder base) {
@@ -545,8 +547,8 @@ public class AccountFormService extends AbstractSecuredLocalService {
         String passwordConfirm = formData.getFirst("password-confirm");
 
         EventBuilder errorEvent = event.clone().event(EventType.UPDATE_PASSWORD_ERROR)
-                .client(auth.getClient())
-                .user(auth.getSession().getUser());
+            .client(auth.getClient())
+            .user(auth.getSession().getUser());
 
         if (requireCurrent) {
             if (Validation.isBlank(password)) {
@@ -661,13 +663,13 @@ public class AccountFormService extends AbstractSecuredLocalService {
                     String hash = Base64Url.encode(check);
                     URI linkUrl = Urls.identityProviderLinkRequest(this.session.getContext().getUri().getBaseUri(), providerId, realm.getName());
                     linkUrl = UriBuilder.fromUri(linkUrl)
-                            .queryParam("nonce", nonce)
-                            .queryParam("hash", hash)
-                            .queryParam("client_id", client.getClientId())
-                            .queryParam("redirect_uri", redirectUri)
-                            .build();
+                        .queryParam("nonce", nonce)
+                        .queryParam("hash", hash)
+                        .queryParam("client_id", client.getClientId())
+                        .queryParam("redirect_uri", redirectUri)
+                        .build();
                     return Response.seeOther(linkUrl)
-                            .build();
+                        .build();
                 } catch (Exception spe) {
                     setReferrerOnPage();
                     return account.setError(Response.Status.INTERNAL_SERVER_ERROR, Messages.IDENTITY_PROVIDER_REDIRECT_ERROR).createResponse(AccountPages.FEDERATED_IDENTITY);
@@ -683,10 +685,10 @@ public class AccountFormService extends AbstractSecuredLocalService {
                         logger.debugv("Social provider {0} removed successfully from user {1}", providerId, user.getUsername());
 
                         event.event(EventType.REMOVE_FEDERATED_IDENTITY).client(auth.getClient()).user(auth.getUser())
-                                .detail(Details.USERNAME, auth.getUser().getUsername())
-                                .detail(Details.IDENTITY_PROVIDER, link.getIdentityProvider())
-                                .detail(Details.IDENTITY_PROVIDER_USERNAME, link.getUserName())
-                                .success();
+                            .detail(Details.USERNAME, auth.getUser().getUsername())
+                            .detail(Details.IDENTITY_PROVIDER, link.getIdentityProvider())
+                            .detail(Details.IDENTITY_PROVIDER_USERNAME, link.getUserName())
+                            .success();
 
                         setReferrerOnPage();
                         return account.setSuccess(Messages.IDENTITY_PROVIDER_REMOVED).createResponse(AccountPages.FEDERATED_IDENTITY);
@@ -729,7 +731,7 @@ public class AccountFormService extends AbstractSecuredLocalService {
         }
 
         auth.require(AccountRoles.MANAGE_ACCOUNT);
-        
+
         csrfCheck(formData);
 
         AuthorizationProvider authorization = session.getProvider(AuthorizationProvider.class);
@@ -851,9 +853,9 @@ public class AccountFormService extends AbstractSecuredLocalService {
         }
 
         auth.require(AccountRoles.MANAGE_ACCOUNT);
-        
+
         csrfCheck(formData);
-        
+
         AuthorizationProvider authorization = session.getProvider(AuthorizationProvider.class);
         PermissionTicketStore ticketStore = authorization.getStoreFactory().getPermissionTicketStore();
         Resource resource = authorization.getStoreFactory().getResourceStore().findById(resourceId, null);
