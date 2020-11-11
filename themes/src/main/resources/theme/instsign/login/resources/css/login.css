@@ -5,11 +5,15 @@
 
 .instsign-login-social-links {
   margin-top: 30px;
-  height: 80px;
+  height: 120px;
+  height: 130px;
 }
 
 .instsign-login-social-link-text {
-  margin-top: 6px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  margin-left: 20px;
   width: auto;
   height: 14px;
   font-size: 14px;
@@ -23,60 +27,69 @@
 }
 
 .instsign-login-social-link-group {
-  margin-left: 0;
+  margin-left: calc(50% - 110px);
+  /*margin-left: 0;*/
+}
+
+.instsign-login-social-link {
+  font-size: 14px;
+  width: 220px;
+  height: 40px;
+  padding: 11px;
+  border-radius: 2px;
+  display: block;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24), 0 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.instsign-login-social-link-img{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: inline-block;
 }
 
 .instsign-login-social-link-naver {
-  display: inline-block;
   vertical-align: top;
-  margin-left: 20px;
+  margin-left: 0;
+  margin-top: 10px;
+  background-color: #ffffff;
 }
 
 .instsign-login-social-link-naver-svg {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  background: url("../img/naver.svg") no-repeat center center;
+  background: url("../img/naver-btn.svg") no-repeat center center;
 }
 
 .instsign-login-social-link-kakao {
-  display: inline-block;
   vertical-align: top;
-  margin-left: 20px;
+  margin-left: 0;
+  margin-top: 10px;
+  background-color: #fae100;
 }
 
 .instsign-login-social-link-kakao-svg {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  background: url("../img/kakao.svg") no-repeat center center;
+  background: url("../img/kakao-btn.svg") no-repeat center center;
 
 }
 
 .instsign-login-social-link-google {
-  display: inline-block;
   vertical-align: top;
   margin-left: 0;
+  background-color: #ffffff;
 }
 
 .instsign-login-social-link-google-svg {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  background: url("../img/google.svg") no-repeat center center;
+  background: url("../img/google-btn.svg") no-repeat center center;
 }
 
 .instsign-login-social-link-facebook {
-  display: inline-block;
   vertical-align: top;
-  margin-left: 20px;
+  margin-left: 0;
+  margin-top: 10px;
+  background-color: #ffffff;
 }
 
 .instsign-login-social-link-facebook-svg {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  background: url("../img/facebook.svg") no-repeat center center;
+  background: url("../img/facebook-btn.svg") no-repeat center center;
 }
 
 .instsign-content-or {

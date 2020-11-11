@@ -11,8 +11,8 @@
             <div class="instsign-login-social-link-group">
                 <#list social.providers as p>
                     <#if p.alias == "google">
-                      <div class="instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
-                        <div class="instsign-login-social-link-${p.alias}-svg">
+                      <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
+                        <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">
                         </div>
                         <div class="instsign-login-social-link-text">
                           <span>${msg("login-social-${p.alias}")}</span>
@@ -22,8 +22,8 @@
                 </#list>
                 <#list social.providers as p>
                     <#if p.alias == "kakao">
-                      <div class="instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
-                        <div class="instsign-login-social-link-${p.alias}-svg">
+                      <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
+                        <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">
                         </div>
                         <div class="instsign-login-social-link-text">
                           <span>${msg("login-social-${p.alias}")}</span>
@@ -33,8 +33,8 @@
                 </#list>
                 <#list social.providers as p>
                     <#if p.alias == "naver">
-                      <div class="instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
-                        <div class="instsign-login-social-link-${p.alias}-svg">
+                      <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">
+                        <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">
                         </div>
                         <div class="instsign-login-social-link-text">
                           <span>${msg("login-social-${p.alias}")}</span>
@@ -44,8 +44,8 @@
                 </#list>
 <#--                <#list social.providers as p>-->
 <#--                    <#if p.alias == "facebook">-->
-<#--                      <div class="instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">-->
-<#--                        <div class="instsign-login-social-link-${p.alias}-svg">-->
+<#--                      <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">-->
+<#--                        <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">-->
 <#--                        </div>-->
 <#--                        <div class="instsign-login-social-link-text">-->
 <#--                          <span>${msg("login-social-${p.alias}")}</span>-->
