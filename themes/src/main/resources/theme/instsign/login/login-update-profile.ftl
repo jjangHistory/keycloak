@@ -30,6 +30,23 @@
                  value="${(user.email!'')}"/>
         </div>
       </div>
+
+            ${(idRequired!'')}
+            ${(identityProviderId!'')}
+       <#if idRequired == "true">
+      <div class="instsign-content-input-group margin-top-20">
+        <div class="instsign-content-input-label">
+          <span>${msg("register-content-naver-id")}</span>
+        </div>
+        <div class="instsign-content-input-text">
+          <input id="naverId" name="naverId" type="text"
+                 onchange="isRequiredFieldValueEntered(this, true)"
+                 value="${(naverId!user.naverId!'')}"
+                 maxlength="50"
+                 placeholder="${msg("instsign-content-naver-id-placeholder")}"/>
+        </div>
+      </div>
+      </#if>
       <div class="instsign-content-input-group margin-top-20">
         <div class="instsign-content-input-label">
           <span>${msg("register-content-name")}</span>

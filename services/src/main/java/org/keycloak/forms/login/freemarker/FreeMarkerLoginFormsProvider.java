@@ -49,7 +49,9 @@ import org.keycloak.sessions.AuthenticationSessionModel;
 import org.keycloak.social.facebook.FacebookIdentityProvider;
 import org.keycloak.social.google.GoogleIdentityProvider;
 import org.keycloak.social.kakao.KakaoIdentityProvider;
+import org.keycloak.social.kakao.KakaoIdentityProviderFactory;
 import org.keycloak.social.naver.NaverIdentityProvider;
+import org.keycloak.social.naver.NaverIdentityProviderFactory;
 import org.keycloak.theme.BrowserSecurityHeaderSetup;
 import org.keycloak.theme.FreeMarkerException;
 import org.keycloak.theme.FreeMarkerUtil;
@@ -201,22 +203,29 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
 
         switch (page) {
             case LOGIN_CONFIG_TOTP:
-                attributes.put("totp", new TotpBean(session, realm, user, uriInfo.getRequestUriBuilder()));
+                attributes.put("totp",
+                    new TotpBean(session, realm, user, uriInfo.getRequestUriBuilder()));
                 break;
             case LOGIN_UPDATE_PROFILE:
-                UpdateProfileContext userCtx = (UpdateProfileContext) attributes.get(LoginFormsProvider.UPDATE_PROFILE_CONTEXT_ATTR);
+                UpdateProfileContext userCtx = (UpdateProfileContext) attributes
+                    .get(LoginFormsProvider.UPDATE_PROFILE_CONTEXT_ATTR);
                 attributes.put("user", new ProfileBean(userCtx, formData));
 
                 String messageKey = null;
                 String identityProviderId = null;
-                if (userCtx instanceof SerializedBrokeredIdentityContext){
-                    identityProviderId = ((SerializedBrokeredIdentityContext)userCtx).getIdentityProviderId();
+                if (userCtx instanceof SerializedBrokeredIdentityContext) {
+                    identityProviderId = ((SerializedBrokeredIdentityContext) userCtx)
+                        .getIdentityProviderId();
                 }
-                if (identityProviderId != null && !identityProviderId.isEmpty()){
-                    messageKey = "login-social-"+identityProviderId;
+                if (identityProviderId != null && !identityProviderId.isEmpty()) {
+                    messageKey = "login-social-" + identityProviderId;
                 }
                 if (messageKey != null) {
                     attributes.put("socialName", getMessage(messageKey));
+                    attributes.put("identityProviderId", identityProviderId);
+                }
+                if (identityProviderId != null) {
+                    attributes.put("identityProviderId", identityProviderId);
                 }
                 String name = "";
                 if (userCtx.getLastName() != null && !userCtx.getLastName().isEmpty()) {
@@ -224,6 +233,13 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
                 }
                 if (userCtx.getFirstName() != null && !userCtx.getFirstName().isEmpty()) {
                     name += userCtx.getFirstName();
+                }
+                String userEmail = userCtx.getEmail();
+//                if (NaverIdentityProviderFactory.PROVIDER_ID.equals(identityProviderId) && !userEmail.contains("naver.com")){
+                if (KakaoIdentityProviderFactory.PROVIDER_ID.equals(identityProviderId) && !userEmail.contains("naver.com")){
+                    attributes.put(Validation.FIELD_ID_REQUIRED, "true");
+                } else {
+                    attributes.put(Validation.FIELD_ID_REQUIRED, "false");
                 }
                 attributes.put(Validation.FIELD_NAME, name);
                 String mobilePhoneNumber = userCtx.getFirstAttribute(UserModel.MOBILE_PHONE_NUMBER);
