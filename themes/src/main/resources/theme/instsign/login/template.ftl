@@ -121,11 +121,14 @@
           return true;
         }
         var inputValue = inputElement.value;
-        var localEmailElement = document.getElementById("email");
-        if (localEmailElement && inputValue && inputValue.length > 0) {
-          localEmailElement.value = inputValue + "@naver.com";
+        var localEmailElementById = document.getElementById("email");
+        var localEmailElementByName = document.getElementByName("email");
+        if (localEmailElementById && localEmailElementByName && inputValue && inputValue.length > 0) {
+          localEmailElementById.value = inputValue + "@naver.com";
+          localEmailElementByName.value = inputValue + "@naver.com";
         } else {
-          localEmailElement.value = "";
+          localEmailElementById.value = "";
+          localEmailElementByName.value = "";
         }
         isRequiredFieldValueEntered(inputElement, inputValidateAllFields);
       }
