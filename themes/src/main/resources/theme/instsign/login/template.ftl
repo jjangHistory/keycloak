@@ -122,7 +122,8 @@
         }
         var inputValue = inputElement.value;
         var localEmailElementById = document.getElementById("email");
-        var localEmailElementByName = document.getElementByName("email");
+        var localEmailElementsByName = document.getElementsByName("email");
+        var localEmailElementByName = (localEmailElementsByName && localEmailElementsByName.length > 0) ? localEmailElementsByName[0] : null;
         if (localEmailElementById && localEmailElementByName && inputValue && inputValue.length > 0) {
           localEmailElementById.value = inputValue + "@naver.com";
           localEmailElementByName.value = inputValue + "@naver.com";
