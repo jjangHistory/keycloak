@@ -116,6 +116,20 @@
         // document.getElementById('register-button').classList.remove("instsign-content-disabled");
       }
 
+      function isNaverIdEntered(inputElement, inputValidateAllFields) {
+        if (!inputElement) {
+          return true;
+        }
+        var inputValue = inputElement.value;
+        var localEmailElement = document.getElementById("email");
+        if (localEmailElement && inputValue && inputValue.length > 0) {
+          localEmailElement.value = inputValue + "@naver.com";
+        } else {
+          localEmailElement.value = "";
+        }
+        isRequiredFieldValueEntered(inputElement, inputValidateAllFields);
+      }
+
       function isRequiredFieldValueEntered(inputElement, inputValidateAllFields) {
         if (!inputElement) {
           return true;

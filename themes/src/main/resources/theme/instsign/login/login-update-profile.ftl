@@ -13,14 +13,18 @@
     </script>
     <input id="password" name="password" type="hidden" value="1111QWwwe!">
     <input name="email" type="hidden"  value="${(user.email!'')}">
+    <input name="naverIdRequired" type="hidden"  value="${(naverIdRequired!'')}">
     <div class="instsign-content instsign-content-register">
       <div class="instsign-content-title">
           ${msg("login-update-profile-content-title")}
       </div>
       <div class="instsign-content-subtitle">
           ${msg("login-update-profile-content-subtitle", "${(socialName!'')}")}
+         <#if naverIdRequired == "true">
+          <br/><br/>${msg("instsign-content-naver-description", "${(user.email!'')}")?no_esc}
+          </#if>
       </div>
-      <br/>
+       <#if naverIdRequired == "false">
       <div class="instsign-content-input-group margin-top-20">
         <div class="instsign-content-input-label">
           <span>${msg("register-content-email")}</span>
@@ -30,17 +34,16 @@
                  value="${(user.email!'')}"/>
         </div>
       </div>
-
-            ${(idRequired!'')}
-            ${(identityProviderId!'')}
-       <#if idRequired == "true">
+      </#if>
+       <#if naverIdRequired == "true">
       <div class="instsign-content-input-group margin-top-20">
         <div class="instsign-content-input-label">
           <span>${msg("register-content-naver-id")}</span>
         </div>
         <div class="instsign-content-input-text">
+          <input id="email" name="email1" type="hidden" value="" />
           <input id="naverId" name="naverId" type="text"
-                 onchange="isRequiredFieldValueEntered(this, true)"
+                 onchange="isNaverIdEntered(this, true)"
                  value="${(naverId!user.naverId!'')}"
                  maxlength="50"
                  placeholder="${msg("instsign-content-naver-id-placeholder")}"/>

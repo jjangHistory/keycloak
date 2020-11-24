@@ -235,11 +235,10 @@ public class FreeMarkerLoginFormsProvider implements LoginFormsProvider {
                     name += userCtx.getFirstName();
                 }
                 String userEmail = userCtx.getEmail();
-//                if (NaverIdentityProviderFactory.PROVIDER_ID.equals(identityProviderId) && !userEmail.contains("naver.com")){
-                if (KakaoIdentityProviderFactory.PROVIDER_ID.equals(identityProviderId) && !userEmail.contains("naver.com")){
-                    attributes.put(Validation.FIELD_ID_REQUIRED, "true");
+                if (NaverIdentityProviderFactory.PROVIDER_ID.equals(identityProviderId) && !userEmail.contains("naver.com")){
+                    attributes.put(Validation.FIELD_NAVER_ID_REQUIRED, "true");
                 } else {
-                    attributes.put(Validation.FIELD_ID_REQUIRED, "false");
+                    attributes.put(Validation.FIELD_NAVER_ID_REQUIRED, "false");
                 }
                 attributes.put(Validation.FIELD_NAME, name);
                 String mobilePhoneNumber = userCtx.getFirstAttribute(UserModel.MOBILE_PHONE_NUMBER);
