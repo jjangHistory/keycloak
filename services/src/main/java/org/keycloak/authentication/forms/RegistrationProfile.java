@@ -129,7 +129,7 @@ public class RegistrationProfile implements FormAction, FormActionFactory {
         if (referredByCode != null){
             referredByCode = referredByCode.trim();
             if (!referredByCode.isEmpty()){
-                user.setSingleAttribute(Validation.FIELD_REFERRED_BY_CODE, referredByCode);
+                user.setSingleAttribute(Validation.FIELD_REFERRED_BY_CODE, referredByCode.toUpperCase());
             }
         }
         String currentLocale = user.getFirstAttribute(Validation.FIELD_LOCALE);
