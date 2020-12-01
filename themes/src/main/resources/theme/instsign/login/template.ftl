@@ -36,8 +36,27 @@
         return false;
       }
 
+      function getInstSignHomeUrl () {
+        var url = window.location.href;
+        if (url.includes("authtest.instsign.com")){
+          return "https://test.instsign.com";
+        } else if (url.includes("authdemo.instsign.com")){
+          return "https://demo.instsign.com";
+        } else if (url.includes("auth.instsign.com")){
+          return "https://app.instsign.com";
+        } else {
+          return "http://localhost:8080";
+        }
+      }
       function goToUrl(url) {
         console.log(url);
+        if (url.includes("/auth/realms/instsign/account") ||
+            url.includes("/auth/?client_id=web_app") ||
+            url.includes("/auth/realms/instsign/login-actions/authenticate?client_id=web_app")
+        ){
+          url = getInstSignHomeUrl();
+          console.log('modified url:' + url);
+        }
         window.location.href = url;
         return false;
       }
