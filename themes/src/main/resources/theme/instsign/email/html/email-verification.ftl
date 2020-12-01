@@ -244,41 +244,42 @@
   </style>
 </head>
 
-<body th:inline="text">
-<div class="email-content">
-  <div class="email-top-section">
-    <div class="email-header">
+<body style="font-family: 'NanumSquare', 'Noto Sans KR', sans-serif; font-weight: 400; background-color: #ffffff;" th:inline="text">
+<div class="email-content" style="display: block; margin-left: auto; margin-right: auto; width: 600px; padding-top: 23px;">
+  <div class="email-top-section" style="display: inline-block; vertical-align: top; border: solid 1px #efeff4; padding-top: 15px; width: 600px; background-color: #ffffff;">
+    <div class="email-header" style="display: inline-block; vertical-align: top; height: 50px; width: 100%;">
       <a href="${homeUrl}" class="email-header-logo" target="_blank">
         <img class="logo logo-margin"
+             style="margin-left: 30px; margin-top: 12px; width: 107px; height: 15px; object-fit: contain;"
              src="https://instsign-resource.s3.ap-northeast-2.amazonaws.com/email/images/instsign-logo-107-x-15%402x.png" />
       </a>
       <a href="${documentUrl}" target="_blank1">
-        <div class="email-header-link-button">
-          <span>${msg("myDocumentButton")?no_esc}</span>
+        <div class="email-header-link-button" style="position: relative; padding: 5px 8px; margin-right: 30px; float: right; text-align: center; height: 18px; border-radius: 2px; border: solid 1px #cacaca; background-color: #ffffff;">
+          <span style="width: 150px; height: 11px; font-weight: 700; font-size: 13px; font-stretch: normal; font-style: normal; line-height: 0.85; letter-spacing: normal; text-align: center; color: #000000;">${msg("myDocumentButton")?no_esc}</span>
         </div>
       </a>
     </div>
-    <div class="email-title">
-      <div class="email-title-1">
+    <div class="email-title" style="display: inline-block; vertical-align: top; margin: 30px 30px 0 30px; width: 530px; height: auto; font-size: 26px; font-weight: 800; font-stretch: normal; font-style: normal; line-height: 1.51; letter-spacing: normal;">
+      <div class="email-title-1" style="color: #000000;">
         <span>${msg("emailVerificationTitle","${name}")?no_esc}</span>
       </div>
     </div>
-    <div class="email-subtitle">
+    <div class="email-subtitle" style="display: inline-block; vertical-align: top; margin: 20px 30px 0 30px; width: 530px; height: auto; font-size: 14px; font-weight: 400; font-stretch: normal; font-style: normal; line-height: 1.49; letter-spacing: normal; color: #000000;">
       <div class="email-subtitle-1">
         <span>${msg("emailVerificationSubtitle")?no_esc}</span>
       </div>
     </div>
-    <div class="email-button-container width-100">
+    <div class="email-button-container width-100" style="margin: 40px 30px 30px 30px; display: inline-block; text-align: center; height: 40px; width: 100px;">
       <a href="${mainButtonUrl}"
          target="_blank2">
-        <div class="email-main-button">
+        <div class="email-main-button" style="border-radius: 2px; background-color: #275ae6; margin: 0; padding: 13px 19px; width: 100%; height: 14px; font-size: 14px; font-weight: 700; font-stretch: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-align: center; color: #ffffff;">
           <span>${msg("emailVerificationButton")?no_esc}</span>
         </div>
       </a>
     </div>
   </div>
-  <div class="document-email-footer-container">
-    <p class="document-email-footer-1">
+  <div class="document-email-footer-container" style="display: inline-block; vertical-align: top; width: 600px; height: auto; font-size: 13px; font-weight: 400; font-stretch: normal; font-style: normal; line-height: 1.46; letter-spacing: normal; color: #686d76; background-color: #ffffff; padding: 20px 0;">
+    <p class="document-email-footer-1" style="display: inline-block; vertical-align: top;">
     <span>${msg("emailVerificationFooter")?no_esc}</span>
     </p>
   </div>
