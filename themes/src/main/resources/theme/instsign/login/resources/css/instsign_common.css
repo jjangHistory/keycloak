@@ -135,7 +135,16 @@ body {
   left: 50%;
   bottom: 22px;
   width: 300px;
-  margin-left: -197px;
+}
+@media (min-width:450px) {
+  .instsign-main .instsign-content-footer{
+    margin-left: -197px;
+  }
+}
+@media (max-width:450px){
+  .instsign-main .instsign-content-footer{
+    margin-left: -117px;
+  }
 }
 @media (max-width:450px){
   .instsign-content-wrapper {
