@@ -190,7 +190,7 @@
               <#list social.providers as p>
                   <#if p.alias == "google">
 <#--                    <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">-->
-                    <div class="instsign-login-social-link-${p.alias}"
+                    <div class="instsign-login-social-link instsign-login-social-link-${p.alias}"
                          onclick="displayAlert('${msg("alert-preparing")}')">
                       <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">
                       </div>
