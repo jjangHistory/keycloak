@@ -93,15 +93,4 @@ Before contributing to Keycloak please read our [contributing guidelines](CONTRI
     keycloak-server
 
 ## command line
-    mvn exec:java -Pkeycloak-server -Dkeycloak.migration.action=import \
-     -Dkeycloak.migration.provider=dir \
-     -Dkeycloak.migration.dir=./realm-config \
-     -Dkeycloak.migration.strategy=OVERWRITE_EXISTING \
-     -Djboss.socket.binding.port-offset=1000 \
-     -Djboss.as.management.blocking.timeout=6000 \
-     -Dkeycloak.port=9080 \
-     -Dkeycloak.connectionsJpa.driver=com.mysql.jdbc.Driver \
-     -Dkeycloak.connectionsJpa.password=blocko2019\!1 \
-     -Dkeycloak.connectionsJpa.user=blocko \
-     -Dresources -Pkeycloak.theme.dir="../../themes/src/main/resources/theme" \
-     -Dkeycloak.connectionsJpa.url="jdbc:mysql://localhost:3316/keycloak?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true"
+    mvn exec:java -Pkeycloak-server -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=./realm-config -Dkeycloak.migration.strategy=OVERWRITE_EXISTING -Djboss.socket.binding.port-offset=1000 -Djboss.as.management.blocking.timeout=6000 -Dkeycloak.port=9080 -Dkeycloak.connectionsJpa.driver=com.mysql.jdbc.Driver -Dkeycloak.connectionsJpa.password=blocko2019\!1 -Dkeycloak.connectionsJpa.user=blocko -Dresources -Pkeycloak.theme.dir="../../themes/src/main/resources/theme" -Dimport="../../../signus-service/src/main/docker/realm-config/instsign-realm.json" -Dkeycloak.connectionsJpa.url="jdbc:mysql://localhost:3316/keycloak?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true"
