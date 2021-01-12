@@ -406,13 +406,13 @@
           if (isValid1 && isValid2 && isValid3 && isValid4 && isValid5 && isValid5 && isValid6
               && isValid7 && isValid8 && isValid9) {
             registerButton.classList.remove('instsign-button-disabled');
-            console.error(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
-                , isValid7 , isValid8 , isValid9);
+            // console.error(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
+            //     , isValid7 , isValid8 , isValid9);
             return true;
           } else {
             registerButton.classList.add('instsign-button-disabled');
-            console.warn(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
-                , isValid7 , isValid8 , isValid9);
+            // console.warn(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
+            //     , isValid7 , isValid8 , isValid9);
             return false;
           }
         }
