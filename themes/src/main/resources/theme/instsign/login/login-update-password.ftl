@@ -4,8 +4,6 @@
       <script>
           function onLoadFunction() {
               console.log('onLoadFunction');
-              isRequiredFieldValueEntered(document.getElementById("password-new"));
-              isRequiredFieldValueEntered(document.getElementById("password-confirm"));
           }
 
           window.addEventListener('load', onLoadFunction);

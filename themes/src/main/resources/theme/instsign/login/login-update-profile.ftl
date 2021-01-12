@@ -6,7 +6,6 @@
       function onLoadFunction() {
         console.log('onLoadFunction');
         isAgreementRequired(false);
-        validateAllFields();
       }
 
       window.addEventListener('load', onLoadFunction);
@@ -43,7 +42,6 @@
         <div class="instsign-content-input-text">
           <input id="email" name="email1" type="hidden" value="" />
           <input id="naverId" name="naverId" type="text"
-                 onchange="isNaverIdEntered(this, true)"
                  value="${(naverId!user.naverId!'')}"
                  maxlength="50"
                  placeholder="${msg("instsign-content-naver-id-placeholder")}"/>
@@ -56,7 +54,6 @@
         </div>
         <div class="instsign-content-input-text">
           <input id="name" name="name" type="text"
-                 onchange="isRequiredFieldValueEntered(this, true)"
                  value="${(name!user.name!'')}"
                  maxlength="50"
                  placeholder="${msg("instsign-content-name-placeholder")}"/>
@@ -70,7 +67,6 @@
           <input id="mobilePhoneNumber" name="mobilePhoneNumber" type="text"
                  autocomplete="mobilePhoneNumber"
                  maxlength="20"
-                 onchange="isRequiredFieldValueEntered(this, true)"
                  value="${(mobilePhoneNumber!user.mobilePhoneNumber!'')}"
                  placeholder="${msg("instsign-content-mobile-phone-number-placeholder")}"/>
         </div>
@@ -107,7 +103,8 @@
       </div>
       <div id="register-agreement-section" class="register-agreement">
         <div class="register-agreement-select">
-          <div class="register-agreement-checkbox" onclick="onAllAgreementClick()">
+          <div class="register-agreement-checkbox"
+          >
             <div id="all-agreement-checkbox"
                  class="all-agreement-checkbox-checked-svg instsign-content-hide"></div>
           </div>
@@ -122,7 +119,8 @@
         </div>
         <div id="register-agreement-option-section" class="register-agreement-select-options instsign-content-hide">
           <div class="register-agreement-select-section-row">
-            <div class="register-agreement-checkbox-small" onclick="onServiceAgreementClick(undefined, true, true)">
+            <div class="register-agreement-checkbox-small"
+            >
               <div id="service-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -132,7 +130,8 @@
             </div>
           </div>
           <div class="register-agreement-select-section-row">
-            <div class="register-agreement-checkbox-small" onclick="onPrivacyAgreementClick(undefined, true, true)">
+            <div class="register-agreement-checkbox-small"
+            >
               <div id="privacy-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -142,7 +141,8 @@
             </div>
           </div>
           <div class="register-agreement-select-section-row">
-            <div class="register-agreement-checkbox-small" onclick="onMarketingAgreementClick(undefined, true, true)">
+            <div class="register-agreement-checkbox-small"
+            >
               <div id="marketing-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -156,7 +156,8 @@
           <span>${msg("instsign-validation-require-accept")}</span>
         </div>
       </div>
-      <div id="register-button" class="instsign-button" onclick="registerSubmit('kc-update-profile-form')">
+      <div id="register-button" class="instsign-button"
+      >
         <span>${msg("register-button")}</span>
       </div>
       <div class="register-login-text">

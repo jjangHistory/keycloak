@@ -7,7 +7,6 @@
       function onLoadFunction() {
         console.log('onLoadFunction');
         isAgreementRequired(false);
-        validateAllFields();
       }
 
       window.addEventListener('load', onLoadFunction);
@@ -23,9 +22,9 @@
         </div>
         <div class="instsign-content-input-text">
           <input id="email" name="email" type="text"
-                 autocomplete="email" onchange="isRequiredFieldValueEntered(this, true)"
+                 autocomplete="email"
                  value="${(register.formData.email!'')}"
-                 maxlength="100"
+                 maxlength="30"
                  placeholder="${msg("instsign-content-email-placeholder")}"/>
         </div>
       </div>
@@ -39,7 +38,7 @@
           <input id="password" name="password" type="password" autocomplete="new-password"
                  maxlength="12"
                  placeholder="${msg("instsign-content-password-placeholder")}"
-                 onchange="validatePassword(this)"/>
+          />
           <input id="password-confirm" name="password-confirm" type="hidden"/>
           <div id="instsign-password-strength-group"
                class="instsign-password-strength instsign-content-hide">
@@ -58,9 +57,8 @@
         </div>
         <div class="instsign-content-input-text">
           <input id="name" name="name" type="text"
-                 onchange="isRequiredFieldValueEntered(this, true)"
                  value="${(register.formData.name!'')}"
-                 maxlength="50"
+                 maxlength="15"
                  placeholder="${msg("instsign-content-name-placeholder")}"/>
         </div>
       </div>
@@ -71,9 +69,8 @@
         <div class="instsign-content-input-text">
           <input id="mobilePhoneNumber" name="mobilePhoneNumber" type="text"
                  autocomplete="mobilePhoneNumber"
-                 onchange="isRequiredFieldValueEntered(this, true)"
                  value="${(register.formData.mobilePhoneNumber!'')}"
-                 maxlength="20"
+                 maxlength="13"
                  placeholder="${msg("instsign-content-mobile-phone-number-placeholder")}"/>
         </div>
       </div>
@@ -84,7 +81,7 @@
         <div class="instsign-content-input-text">
           <input id="company" name="company" type="text"
                  autocomplete="off"
-                 maxlength="100"
+                 maxlength="15"
                  value="${(register.formData.company!'')}"
                  placeholder="${msg("instsign-content-company-placeholder")}"/>
         </div>
@@ -109,7 +106,8 @@
       </div>
       <div id="register-agreement-section" class="register-agreement">
         <div class="register-agreement-select">
-          <div class="register-agreement-checkbox" onclick="onAllAgreementClick()">
+          <div class="register-agreement-checkbox"
+          >
             <div id="all-agreement-checkbox"
                  class="all-agreement-checkbox-checked-svg instsign-content-hide"></div>
           </div>
@@ -119,14 +117,14 @@
             <span>${msg("register-content-all-agreement")}</span>
           </div>
           <div id="div-all-agreement-dropdown" class="all-agreement-dropdown dropdown-default"
-               onclick="onAllAgreementDropdownClick(event)">
+               onclick="onAllAgreementDropdownClick()">
           </div>
         </div>
         <div id="register-agreement-option-section"
              class="register-agreement-select-options instsign-content-hide">
           <div class="register-agreement-select-section-row">
             <div class="register-agreement-checkbox-small"
-                 onclick="onServiceAgreementClick(undefined, true, true)">
+            >
               <div id="service-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -138,7 +136,7 @@
           </div>
           <div class="register-agreement-select-section-row">
             <div class="register-agreement-checkbox-small"
-                 onclick="onPrivacyAgreementClick(undefined, true, true)">
+            >
               <div id="privacy-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -150,7 +148,7 @@
           </div>
           <div class="register-agreement-select-section-row">
             <div class="register-agreement-checkbox-small"
-                 onclick="onMarketingAgreementClick(undefined, true, true)">
+            >
               <div id="marketing-agreement-checkbox"
                    class="small-agreement-checkbox-checked-svg instsign-content-hide"></div>
             </div>
@@ -167,7 +165,7 @@
         </div>
       </div>
       <div id="register-button" class="instsign-button"
-           onclick="registerSubmit('kc-register-form')">
+      >
         <span>${msg("register-button")}</span>
       </div>
       <div class="register-login-text">
@@ -189,7 +187,6 @@
           <div class="instsign-login-social-link-group">
               <#list social.providers as p>
                   <#if p.alias == "google">
-<#--                    <div class="instsign-login-social-link instsign-login-social-link-${p.alias}" onclick="goToUrl('${p.loginUrl}')">-->
                     <div class="instsign-login-social-link instsign-login-social-link-${p.alias}"
                          onclick="displayAlert('${msg("alert-preparing")}')">
                       <div class="instsign-login-social-link-img instsign-login-social-link-${p.alias}-svg">
