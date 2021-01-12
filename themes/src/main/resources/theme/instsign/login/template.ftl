@@ -113,7 +113,6 @@
         }
       }
 
-
       function displayAgreementRequiredErrorMessage() {
         console.log('displayAgreementRequiredErrorMessage');
         // document.getElementById('register-validation-accept-agreement').classList.remove("instsign-content-hide");
@@ -405,12 +404,13 @@
           const registerButton = $('#register-button')[0];
           if (isValid1 && isValid2 && isValid3 && isValid4 && isValid5 && isValid5 && isValid6
               && isValid7 && isValid8 && isValid9) {
-            registerButton.classList.remove('instsign-button-disabled');
+            registerButton?.classList.remove('instsign-button-disabled');
+
             // console.error(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
             //     , isValid7 , isValid8 , isValid9);
             return true;
           } else {
-            registerButton.classList.add('instsign-button-disabled');
+            registerButton?.classList.add('instsign-button-disabled');
             // console.warn(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
             //     , isValid7 , isValid8 , isValid9);
             return false;
@@ -557,7 +557,7 @@
           checkValid();
         });
 
-        $('.register-agreement-checkbox').on('click', this, function(event){
+        $('.register-agreement-checkbox').on('click', this, function (event) {
           onAllAgreementClick();
           const checkedValue = isValueTrue(document.getElementById('allAgreement').value);
           isValid7 = checkedValue;
@@ -566,9 +566,9 @@
           checkValid();
         });
 
-        $('.register-agreement-checkbox-small').on('click', this, function(event){
+        $('.register-agreement-checkbox-small').on('click', this, function (event) {
           const inputElement = this.nextElementSibling;
-          switch (inputElement.id){
+          switch (inputElement.id) {
             case 'serviceAgreement':
               onServiceAgreementClick(undefined, true, true);
               isValid7 = isValueTrue(inputElement.value);
