@@ -128,25 +128,6 @@
         // document.getElementById('register-button').classList.remove("instsign-content-disabled");
       }
 
-      function isNaverIdEntered(inputElement, inputValidateAllFields) {
-        if (!inputElement) {
-          return true;
-        }
-        var inputValue = inputElement.value;
-        var localEmailElementById = document.getElementById("email");
-        var localEmailElementsByName = document.getElementsByName("email");
-        var localEmailElementByName = (localEmailElementsByName && localEmailElementsByName.length
-            > 0) ? localEmailElementsByName[0] : null;
-        if (localEmailElementById && localEmailElementByName && inputValue && inputValue.length
-            > 0) {
-          localEmailElementById.value = inputValue + "@naver.com";
-          localEmailElementByName.value = inputValue + "@naver.com";
-        } else {
-          localEmailElementById.value = "";
-          localEmailElementByName.value = "";
-        }
-      }
-
       function getElementValueById(elementId) {
         var localElement = document.getElementById(elementId);
         if (localElement) {
@@ -448,6 +429,30 @@
               inputElement.parentNode.removeChild(emailErrorSpan);
             }
             isValid1 = REGEX_EMAIL.test(inputValue);
+          } else {
+            inputElement.className = 'instsign-error';
+            if (inputElement.nextElementSibling === null) {
+              inputElement.parentNode.appendChild(emailErrorSpan);
+            }
+            isValid1 = false;
+          }
+          checkValid();
+        });
+
+        $("#naverId").keyup(function () {
+          const inputElement = $('#naverId')[0];
+          const inputValue = inputElement.value + '@naver.com';
+          if (REGEX_EMAIL.test(inputValue) || inputValue === undefined || inputValue === null
+              || inputValue.length === 0) {
+            inputElement.className = '';
+            if (inputElement.nextElementSibling !== null) {
+              inputElement.parentNode.removeChild(emailErrorSpan);
+            }
+            isValid1 = REGEX_EMAIL.test(inputValue);
+            if(isValid1){
+              const inputElement = $('#email')[0];
+              inputElement.value = inputValue;
+            }
           } else {
             inputElement.className = 'instsign-error';
             if (inputElement.nextElementSibling === null) {
