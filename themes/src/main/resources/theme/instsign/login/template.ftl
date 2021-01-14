@@ -371,10 +371,10 @@
         const phoneNumberErrorSpan = createSpanElement('휴대폰 번호가 유효하지 않습니다.');
         const companyErrorSpan = createSpanElement('첫 단어에 공백이 포함될 수 없습니다.');
         const refCodeErrorSpan = createSpanElement('첫 단어에 공백이 포함될 수 없습니다.');
-        let isValid1 = false; // email
-        let isValid2 = false; // pwd
-        let isValid3 = false; // name
-        let isValid4 = false; // phone
+        let isValid1 = REGEX_EMAIL.test($('#email')[0].value); // email
+        let isValid2 = !!$('#password')[0].value; // pwd
+        let isValid3 = REGEX_NAME.test($('#name')[0].value); // name
+        let isValid4 = REGEX_PHONE_NUMBER.test($('#mobilePhoneNumber')[0].value); // phone
         let isValid5 = true;  // company
         let isValid6 = true;  // ref Code
         let isValid7 = false; // service
@@ -387,13 +387,13 @@
               && isValid7 && isValid8 && isValid9) {
             registerButton?.classList.remove('instsign-button-disabled');
 
-            // console.error(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
-            //     , isValid7 , isValid8 , isValid9);
+            // console.error(isValid1, isValid2, isValid3, isValid4, isValid5, isValid5, isValid6
+            //     , isValid7, isValid8, isValid9);
             return true;
           } else {
             registerButton?.classList.add('instsign-button-disabled');
-            // console.warn(isValid1 , isValid2 , isValid3 , isValid4 , isValid5 , isValid5 , isValid6
-            //     , isValid7 , isValid8 , isValid9);
+            // console.warn(isValid1, isValid2, isValid3, isValid4, isValid5, isValid5, isValid6
+            //     , isValid7, isValid8, isValid9);
             return false;
           }
         }
@@ -449,7 +449,7 @@
               inputElement.parentNode.removeChild(emailErrorSpan);
             }
             isValid1 = REGEX_EMAIL.test(inputValue);
-            if(isValid1){
+            if (isValid1) {
               const inputElement = $('#email')[0];
               inputElement.value = inputValue;
             }
