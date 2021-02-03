@@ -36,8 +36,10 @@
     <!-- Google Tag Manager -->
     <script>
       console.log('window.location.host:' + window.location.host, navigator.userAgent);
-      if (window.location.host === "app.instsign.com" || window.location.host
-          === "auth.instsign.com") {
+      if (window.location.host === "app.instsign.com" ||
+          window.location.host === "auth.instsign.com" ||
+          window.location.host === "app2.instsign.com" ||
+          window.location.host === "auth2.instsign.com") {
         (function (w, d, s, l, i) {
           w[l] = w[l] || [];
           w[l].push({
@@ -69,6 +71,8 @@
           return "https://demo.instsign.com";
         } else if (url.includes("auth.instsign.com")) {
           return "https://app.instsign.com";
+        } else if (url.includes("auth2.instsign.com")) {
+          return "https://app2.instsign.com";
         } else {
           return "http://localhost:8080";
         }
